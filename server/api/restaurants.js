@@ -1,13 +1,10 @@
 const router = require("express").Router();
-const { Restaurants } = require("../db");
+const { Restaurant } = require("../db");
 
-// GET   /api/robots
 router.get("/", async (req, res, next) => {
   try {
-    const allRobots = await Robot.findAll({
-      include: [{ model: Projects }],
-    });
-    res.json(allRobots);
+    const allRestaurants = await Restaurant.findAll();
+    res.json(allRestaurants);
   } catch (error) {
     next(error);
   }

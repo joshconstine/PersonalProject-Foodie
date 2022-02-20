@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../db");
 
-const Restaurants = db.define("Restaurants", {
+const Restaurant = db.define("Restaurant", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -23,4 +23,4 @@ const Restaurants = db.define("Restaurants", {
   },
 });
 
-module.exports = Restaurants;
+module.exports = Restaurant;
