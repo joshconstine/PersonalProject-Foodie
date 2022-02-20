@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { Restaurant } = require("../db");
+const req = require("express/lib/request");
+const { Restaurant, Review } = require("../db");
+const Reviews = require("../db/models/Review");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -16,6 +18,7 @@ router.get("/:id", async (req, res, nexy) => {
       where: {
         id: req.params.id,
       },
+      include: [{ model: Reviews }],
     });
     res.json(singleRestaurant);
   } catch (err) {

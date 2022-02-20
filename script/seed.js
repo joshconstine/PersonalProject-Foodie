@@ -3,6 +3,7 @@
 const {
   db,
   Restaurant,
+  Review,
   models: { User },
 } = require("../server/db");
 
@@ -17,7 +18,7 @@ async function seed() {
   var restaurants = [
     {
       id: 1,
-      name: "Mac Shack ",
+      name: "Mac Shack",
       imageUrl: "/images/r2d2.png",
       foodType: "american",
     },
@@ -46,6 +47,27 @@ async function seed() {
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
   ]);
+
+  const reviews = await Promise.all([
+    Review.create({
+      name: "cody",
+      text: "this place is bussing, CPD through the roof",
+      rating: 5,
+    }),
+  ]);
+
+  const mcDonalds = await Restaurant.findOne({
+    where: {
+      name: "Mac Shack",
+    },
+  });
+  const codiesReview = await Review.findOne({
+    where: {
+      name: "cody",
+    },
+  });
+
+  await mcDonalds.addReview(codiesReview);
 
   console.log(`seeded ${users.length} users`);
   console.log(`users seeded successfully`);

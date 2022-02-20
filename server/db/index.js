@@ -2,10 +2,14 @@
 
 const db = require("./db");
 const Restaurant = require("./models/Restaurant");
+const Review = require("./models/Review");
 
 const User = require("./models/User");
 
 //associations could go here!
+
+Restaurant.hasMany(Review);
+Review.belongsTo(Restaurant);
 
 module.exports = {
   db,
@@ -13,4 +17,5 @@ module.exports = {
     User,
   },
   Restaurant,
+  Review,
 };

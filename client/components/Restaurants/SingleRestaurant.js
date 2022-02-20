@@ -23,6 +23,8 @@ export class SingleRestaurant extends React.Component {
 
   render() {
     const restaurant = this.props.selectedRestaurant || {};
+    const reviews = restaurant.Reviews || [];
+    console.log(restaurant);
 
     return (
       <div>
@@ -30,6 +32,15 @@ export class SingleRestaurant extends React.Component {
           <h1>{restaurant.name}</h1>
           <h2>{restaurant.foodType}</h2>
         </div>
+        <h1>Reviews- </h1>
+        {reviews.map((review) => {
+          return (
+            <div review={review} key={review.id}>
+              <h3>{review.name}</h3>
+              <p>{review.text}</p>
+            </div>
+          );
+        })}
       </div>
     );
   }
