@@ -25,7 +25,9 @@ export class AllRestautants extends React.Component {
         {restaurants.map((restaurant) => {
           return (
             <div restaurant={restaurant} key={restaurant.id}>
-              <p>{restaurant.name}</p>
+              <Link to={`/restaurants/${restaurant.id}`}>
+                <p>{restaurant.name}</p>
+              </Link>
             </div>
           );
         })}

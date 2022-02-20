@@ -5,6 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
 import AllRestaurants from "./components/Restaurants/AllRestaurants";
+import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
 
 /**
  * COMPONENT
@@ -22,6 +23,11 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route
+              exact
+              path="/restaurants/:restaurantId"
+              component={SingleRestaurant}
+            />
             <Route path="/restaurants" component={AllRestaurants} />
             <Redirect to="/home" />
           </Switch>
@@ -29,6 +35,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
+
             <Route path="/signup" component={Signup} />
           </Switch>
         )}
