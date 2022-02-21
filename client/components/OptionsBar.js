@@ -6,8 +6,7 @@ export default function OptionsBar() {
     <div>
       <nav>
         <Link to="/restaurants">Restaurants</Link>
-
-        <a> My Reviews </a>
+        <Link to="/reviews">My Reviews</Link>
       </nav>
     </div>
   );

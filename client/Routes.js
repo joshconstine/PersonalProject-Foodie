@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { me } from "./store";
 import AllRestaurants from "./components/Restaurants/AllRestaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
+import UsersReviews from "./components/Reviews/UsersReviews";
 
 /**
  * COMPONENT
@@ -29,6 +30,8 @@ class Routes extends Component {
               component={SingleRestaurant}
             />
             <Route path="/restaurants" component={AllRestaurants} />
+            <Route path="/reviews" component={UsersReviews} />
+
             <Redirect to="/home" />
           </Switch>
         ) : (

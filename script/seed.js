@@ -1,11 +1,6 @@
 "use strict";
 
-const {
-  db,
-  Restaurant,
-  Review,
-  User,
-} = require("../server/db");
+const { db, Restaurant, Review, User } = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -67,7 +62,14 @@ async function seed() {
     },
   });
 
+  const cody = await User.findOne({
+    where: {
+      username: "cody",
+    },
+  });
+
   await mcDonalds.addReview(codiesReview);
+  await cody.addReview(codiesReview);
 
   console.log(`seeded ${users.length} users`);
   console.log(`users seeded successfully`);

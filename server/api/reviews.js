@@ -12,6 +12,18 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const allReviews = await Review.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    });
+    res.json(allReviews);
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.post("/:restaurantId", async (req, res, next) => {
   try {
