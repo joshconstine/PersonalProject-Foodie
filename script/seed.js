@@ -4,7 +4,7 @@ const {
   db,
   Restaurant,
   Review,
-  models: { User },
+  User,
 } = require("../server/db");
 
 /**
