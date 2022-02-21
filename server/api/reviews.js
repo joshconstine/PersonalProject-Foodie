@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Review } = require("../db");
 const Reviews = require("../db/models/Review");
 const Restaurant = require("../db/models/Restaurant");
+const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -24,9 +25,16 @@ router.post("/:restaurantId", async (req, res, next) => {
       },
     });
 
+    const user = await User.findOne({
+      where: {
+        username: createdReview.name,
+      },
+    });
+
     await restaurant.addReview(createdReview);
-    console.log(restaurant);
-    res.status(201).send(createdReview);
+    await user.addReview(createdReview);
+
+    await res.status(201).send(createdReview);
     // res.status(201).send(await Review.create(req.body));
   } catch (error) {
     next(error);

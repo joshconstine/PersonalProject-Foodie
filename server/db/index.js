@@ -11,8 +11,8 @@ const User = require("./models/User");
 Restaurant.hasMany(Review);
 Review.belongsTo(Restaurant);
 
-// User.hasMany(Review);
-// Review.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 module.exports = {
   db,
