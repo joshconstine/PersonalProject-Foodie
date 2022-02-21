@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { fetchCreateReview } from "../../store/reviews";
 import { connect } from "react-redux";
+import { fetchRestaurant } from "../../store/singleRestaurant";
 
 class AddReview extends Component {
   constructor() {
@@ -21,7 +22,13 @@ class AddReview extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createReview({ ...this.state });
+    const name = this.props.username;
+    const restaurantId = this.props.selectedRestaurant.id;
+    this.props.createReview({ ...this.state, name }, restaurantId);
+    this.props.getRestaurant(restaurantId);
+    this.setState({
+      text: "",
+    });
   }
 
   render() {
@@ -38,8 +45,16 @@ class AddReview extends Component {
   }
 }
 
+const mapState = (state) => {
+  return {
+    username: state.auth.username,
+    selectedRestaurant: state.selectedRestaurant,
+  };
+};
 const mapDispatchToProps = (dispatch, { history }) => ({
-  createReview: (review) => dispatch(fetchCreateReview(review, history)),
+  createReview: (review, restaurantId) =>
+    dispatch(fetchCreateReview(review, restaurantId)),
+  getRestaurant: (id) => dispatch(fetchRestaurant(id)),
 });
 
-export default connect(null, mapDispatchToProps)(AddReview);
+export default connect(mapState, mapDispatchToProps)(AddReview);

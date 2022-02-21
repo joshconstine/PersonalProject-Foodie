@@ -11,12 +11,15 @@ const createReview = (review) => {
   };
 };
 
-export const fetchCreateReview = (review, history) => {
+export const fetchCreateReview = (review, restaurantId) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post("/api/reviews", review);
+      const { data: created } = await axios.post(
+        `/api/reviews/${restaurantId}`,
+        review
+      );
+
       dispatch(createReview(created));
-      history.push("/");
     } catch (err) {
       console.log(err);
     }

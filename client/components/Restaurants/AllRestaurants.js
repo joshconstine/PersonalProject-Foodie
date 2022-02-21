@@ -37,6 +37,7 @@ export class AllRestautants extends React.Component {
 const mapState = (state) => {
   return {
     restaurants: state.restaurants,
+    selectedRestaurant: state.selectedRestaurant,
   };
 };
 
