@@ -21,7 +21,6 @@ export class AllRestautants extends React.Component {
 
     return (
       <div>
-        <h1>hello guys</h1>
         {restaurants.map((restaurant) => {
           return (
             <div restaurant={restaurant} key={restaurant.id}>

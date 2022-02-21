@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchRestaurant } from "../../store/singleRestaurant";
+import AddReview from "./AddReview";
 
 import { Link } from "react-router-dom";
 
@@ -41,6 +42,9 @@ export class SingleRestaurant extends React.Component {
             </div>
           );
         })}
+        <div>
+          <AddReview />
+        </div>
       </div>
     );
   }

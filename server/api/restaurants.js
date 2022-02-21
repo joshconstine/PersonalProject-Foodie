@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const req = require("express/lib/request");
 const { Restaurant, Review } = require("../db");
 const Reviews = require("../db/models/Review");
 
