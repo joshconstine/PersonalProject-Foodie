@@ -14,19 +14,44 @@ async function seed() {
     {
       id: 1,
       name: "Mac Shack",
-      imageUrl: "/images/r2d2.png",
+
+      imageUrl:
+        "https://retailerreportcard.com/wp-content/uploads/2018/09/logo-large-mcdonalds.png",
       foodType: "american",
     },
     {
       id: 2,
-      name: "Taco Bell",
-      imageUrl: "/images/walle.jpeg",
+      name: "T Bell",
+      imageUrl:
+        "https://locations.tacobell.com/permanent-b0b701/assets/images/TBUS_Logo.7bd20747.svg",
       foodType: "mexican",
     },
     {
       id: 3,
       name: "Culvers",
-      imageUrl: "/images/walle.jpeg",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVZLGfH7vXYyXrKJCB6Vd9JUpjBHhJawsbDg&usqp=CAU",
+      foodType: "american",
+    },
+    {
+      id: 4,
+      name: "In-N-OUT",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/InNOut_2021_logo.svg/1200px-InNOut_2021_logo.svg.png",
+      foodType: "american",
+    },
+    {
+      id: 5,
+      name: "Chick-Fil-A",
+      imageUrl:
+        "http://www.chick-fil-a.com/-/media/images/cfacom/default-images/chick-fil-a-logo-vector.ashx",
+      foodType: "american",
+    },
+    {
+      id: 6,
+      name: "Arbys",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Arby%27s_logo.svg/1200px-Arby%27s_logo.svg.png",
       foodType: "american",
     },
   ];

@@ -18,8 +18,8 @@ const Restaurant = db.define("Restaurant", {
   },
 
   imageUrl: {
-    type: DataTypes.STRING,
-    defaultValue: "",
+    type: DataTypes.TEXT,
+    defaultValue: "default-restaurant.jpg",
   },
 });
 

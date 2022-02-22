@@ -1,5 +1,14 @@
+/* @use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+
+@include textfield.core-styles; */
+@import "@material/card/mdc-card";
 body {
   font-family: sans-serif;
+  background-color: lightgrey;
+  background: url("citrusPic.jpg");
 }
 
 a {
@@ -9,9 +18,18 @@ a {
 label {
   display: block;
 }
-
+nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: right;
+}
+.navItem {
+}
 
 nav a {
+  align-items: center;
+
   display: inline-block;
   margin: 1em;
 }
@@ -19,4 +37,39 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.restaurant-container {
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.restaurant {
+  margin: 10px;
+  width: 400px;
+  height: 600px;
+
+  border: 10px;
+}
+
+.my-card-content {
+  padding: 16px;
+}
+.restaurant-text {
+  color: #b5838d;
+}
+#headder {
+  color: #000;
+  display: flex;
+  justify-content: center;
 }

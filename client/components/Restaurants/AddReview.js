@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { fetchCreateReview } from "../../store/reviews";
 import { connect } from "react-redux";
 import { fetchRestaurant } from "../../store/singleRestaurant";
+import { Button } from "@material-ui/core";
+import { MDCTextField } from "@material/textfield";
+
 
 class AddReview extends Component {
   constructor() {
@@ -37,9 +40,34 @@ class AddReview extends Component {
 
     return (
       <form onSubmit={handleSubmit}>
-        <label htmlFor="text">text:</label>
-        <input name="text" onChange={handleChange} value={text} />
-        <button type="submit">Submit</button>
+        <label
+          htmlFor="text"
+          className="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label"
+        >
+          <span className="mdc-notched-outline">
+            <span className="mdc-notched-outline__leading"></span>
+            <span className="mdc-notched-outline__trailing"></span>
+          </span>
+          <span className="mdc-text-field__resizer">
+            <textarea
+              onChange={handleChange}
+              value={text}
+              name="text"
+              className="mdc-text-field__input"
+              rows="8"
+              cols="40"
+              aria-label="Label"
+            ></textarea>
+          </span>
+        </label>
+
+        {/* <label htmlFor="text">text:</label> */}
+        {/* <input name="text" onChange={handleChange} value={text} /> */}
+        <Button variant="text" type="submit">
+          Submit
+        </Button>
+
+        {/* <button type="submit">Submit</button> */}
       </form>
     );
   }

@@ -17,21 +17,16 @@ export class UsersReviews extends React.Component {
   }
 
   render() {
-    // const restaurant = this.props.selectedRestaurant || {};
-    // const reviews = restaurant.Reviews || [];
-    // console.log(restaurant);
+    const reviews = this.props.reviews || [];
+    console.log(reviews);
 
     return (
       <div>
-        <h1>persons reviews</h1>
-        <div>
-          <h1>{this.props.username}</h1>
-        </div>
-        <h1>Reviews- </h1>
-        {this.props.reviews.map((review) => {
+        <h2>your reviews - </h2>
+        {reviews.map((review) => {
           return (
             <div review={review} key={review.id}>
-              <h3>{review.name}</h3>
+              <h3>{review.Restaurant.name}</h3>
               <p>{review.text}</p>
             </div>
           );

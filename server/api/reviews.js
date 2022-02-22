@@ -18,6 +18,7 @@ router.get("/:userId", async (req, res, next) => {
       where: {
         userId: req.params.userId,
       },
+      include: [{ model: Restaurant }],
     });
     res.json(allReviews);
   } catch (error) {
