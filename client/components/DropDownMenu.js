@@ -1,24 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const DropDownMenu = () => {
   return (
-    <div class="mui-dropdown">
-      <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
-        Dropdown
-        <span class="mui-caret"></span>
+    <div className="mui-dropdown">
+      <button data-mui-toggle="dropdown" id="ddm">
+        My Account
+        <span className="mui-caret"></span>
       </button>
-      <ul class="mui-dropdown__menu">
+      <ul className="mui-dropdown__menu" id="ddm">
+        <Link to="/reviews">
+          <li>
+            <span>Your reviews</span>
+          </li>
+        </Link>
         <li>
-          <a href="#">Option 1</a>
-        </li>
-        <li>
-          <a href="#">Option 2</a>
-        </li>
-        <li>
-          <a href="#">Option 3</a>
-        </li>
-        <li>
-          <a href="#">Option 4</a>
+          <span href="#">Option 2</span>
         </li>
       </ul>
     </div>

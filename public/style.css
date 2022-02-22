@@ -23,8 +23,11 @@ nav {
   align-items: center;
   flex-direction: row-reverse;
   justify-content: right;
+  padding-right: 50px;
 }
 .navItem {
+  color: #b5838d;
+  font-size: 20px;
 }
 
 nav a {
@@ -72,4 +75,11 @@ main {
   color: #000;
   display: flex;
   justify-content: center;
+}
+#ddm {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
 }
