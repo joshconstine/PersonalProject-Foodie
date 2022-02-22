@@ -64,8 +64,14 @@ async function seed() {
   console.log(`restaurants seeded successfully`);
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
-    User.create({ username: "murphy", password: "123" }),
+    User.create({ username: "cody", password: "123", photo: "" }),
+    User.create({ username: "murphy", password: "123", photo: "" }),
+    User.create({
+      username: "alyssia",
+      password: "brandy",
+      photo:
+        "http://static1.squarespace.com/static/5fd80c30dba154430f787273/t/603edd7be40c807aea22ccb5/1614732672694/branding+and+web+design+company+owner+banner+for+her+website.jpg?format=1500w",
+    }),
   ]);
 
   const reviews = await Promise.all([
@@ -74,6 +80,16 @@ async function seed() {
       text: "this place is bussing, CPD through the roof",
       rating: 5,
     }),
+    Review.create({
+      name: "Alyssia",
+      text: "this place is good but it makes me gassey",
+      rating: 4,
+    }),
+    Review.create({
+      name: "alyssia",
+      text: "This place screwed up my order, forgot my apple pie, WTF Sophia",
+      rating: 3,
+    }),
   ]);
 
   const mcDonalds = await Restaurant.findOne({
@@ -81,6 +97,23 @@ async function seed() {
       name: "Mac Shack",
     },
   });
+  const tbell = await Restaurant.findOne({
+    where: {
+      name: "T Bell",
+    },
+  });
+
+  const alyReview = await Review.findOne({
+    where: {
+      name: "Alyssia",
+    },
+  });
+  const alyReview2 = await Review.findOne({
+    where: {
+      name: "alyssia",
+    },
+  });
+
   const codiesReview = await Review.findOne({
     where: {
       name: "cody",
@@ -92,9 +125,18 @@ async function seed() {
       username: "cody",
     },
   });
+  const aly = await User.findOne({
+    where: {
+      username: "alyssia",
+    },
+  });
 
   await mcDonalds.addReview(codiesReview);
+  await mcDonalds.addReview(alyReview2);
+  await tbell.addReview(alyReview);
   await cody.addReview(codiesReview);
+  await aly.addReview(alyReview);
+  await aly.addReview(alyReview2);
 
   console.log(`seeded ${users.length} users`);
   console.log(`users seeded successfully`);

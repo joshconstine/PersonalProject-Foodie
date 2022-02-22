@@ -83,3 +83,8 @@ main {
   cursor: pointer;
   overflow: hidden;
 }
+.review {
+  justify-content: center;
+  margin: 10px;
+  width: 75%;
+}
