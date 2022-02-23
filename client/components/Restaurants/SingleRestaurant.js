@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { fetchDeleteReview } from "../../store/reviews";
-
+import DataChart from "./DataChart";
 // Notice that we're exporting the AllRobots component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
 // bottom) is connected to Redux. Our tests should cover _both_ cases.
@@ -99,6 +99,7 @@ export class SingleRestaurant extends React.Component {
         <div>
           <AddReview />
         </div>
+        <DataChart />
       </div>
     );
   }
