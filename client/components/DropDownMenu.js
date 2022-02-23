@@ -14,6 +14,11 @@ const DropDownMenu = () => {
             <span>Your reviews</span>
           </li>
         </Link>
+        <Link to="/home">
+          <li>
+            <span>Home</span>
+          </li>
+        </Link>
         <li>
           <span href="#">Option 2</span>
         </li>

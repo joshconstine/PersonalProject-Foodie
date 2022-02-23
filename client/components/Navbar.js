@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import DropDownMenu from "./DropDownMenu";
+import { Button } from "@material-ui/core";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -16,7 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           </span>
 
           <a className="navItem">
-            <span onClick={handleClick}>Logout</span>
+            <Button onClick={handleClick}>Logout</Button>
           </a>
         </div>
       ) : (

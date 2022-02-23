@@ -64,7 +64,12 @@ async function seed() {
   console.log(`restaurants seeded successfully`);
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123", photo: "" }),
+    User.create({
+      username: "cody",
+      password: "123",
+      photo:
+        "https://yt3.ggpht.com/ytc/AKedOLTZB4vkQIj98TFZfy5A9SltkiQDRb2ka_eNkump=s900-c-k-c0x00ffffff-no-rj",
+    }),
     User.create({ username: "murphy", password: "123", photo: "" }),
     User.create({
       username: "alyssia",

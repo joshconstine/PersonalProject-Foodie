@@ -2,7 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchRestaurant } from "../../store/singleRestaurant";
 import AddReview from "./AddReview";
-
+import {
+  Card,
+  Box,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  CardMedia,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 // Notice that we're exporting the AllRobots component twice. The named export
@@ -29,16 +37,60 @@ export class SingleRestaurant extends React.Component {
 
     return (
       <div>
-        <div>
-          <h1>{restaurant.name}</h1>
-          <h2>{restaurant.foodType}</h2>
+        <div className="restaurant-container">
+          <Box>
+            <Card
+              className="mdc-card mdc-card--outlined singleRestaurant"
+              variant="outlined"
+              style={{ backgroundColor: "white" }}
+            >
+              <CardMedia>
+                <CardMedia
+                  style={{ paddingTop: "10%" }}
+                  image={restaurant.imageUrl}
+                  title="Background image"
+                  component="img"
+                />
+              </CardMedia>
+              <CardContent>
+                <Typography variant="h3" className="restaurant-text">
+                  {restaurant.name}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
         </div>
         <h1>Reviews- </h1>
-        {reviews.map((review) => {
+        {/* {reviews.map((review) => {
           return (
             <div review={review} key={review.id}>
               <h3>{review.name}</h3>
               <p>{review.text}</p>
+            </div>
+          );
+        })} */}
+        {reviews.map((review) => {
+          return (
+            <div review={review} key={review.id}>
+              <Box>
+                <Card
+                  className="mdc-card mdc-card--outlined review"
+                  variant="outlined"
+                  style={{ backgroundColor: "white" }}
+                >
+                  <CardContent>
+                    <Typography variant="h3" className="restaurant-text">
+                      <div>
+                        <h3>{review.name}</h3>
+                        <p>{review.text}</p>
+                      </div>
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button>Delete</Button>
+                  </CardActions>
+                </Card>
+              </Box>
             </div>
           );
         })}
