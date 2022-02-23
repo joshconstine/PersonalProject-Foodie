@@ -6,7 +6,7 @@ class Map extends Component {
     super(props);
   }
   componentDidMount() {
-    var map = L.map("map").setView([51.505, -0.09], 13);
+    var map = L.map("map").setView([44.48696447992683, -88.03761242571646], 13);
     L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&amp;copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',

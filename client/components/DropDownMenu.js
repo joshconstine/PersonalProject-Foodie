@@ -19,9 +19,11 @@ const DropDownMenu = () => {
             <span>Home</span>
           </li>
         </Link>
-        <li>
-          <span href="#">Option 2</span>
-        </li>
+        <Link to="/Map">
+          <li>
+            <span>Map</span>
+          </li>
+        </Link>
       </ul>
     </div>
   );
