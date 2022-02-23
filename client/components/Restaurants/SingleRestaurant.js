@@ -64,6 +64,11 @@ export class SingleRestaurant extends React.Component {
                   {restaurant.name}
                 </Typography>
               </CardContent>
+              <CardActions>
+                <Link to={`/data/${restaurant.id}`}>
+                  <Button size="small">Data</Button>
+                </Link>
+              </CardActions>
             </Card>
           </Box>
         </div>
@@ -86,11 +91,6 @@ export class SingleRestaurant extends React.Component {
                       </div>
                     </Typography>
                   </CardContent>
-                  {/* <CardActions>
-                    <Button onClick={() => this.handleDelete(review.id)}>
-                      Delete
-                    </Button>
-                  </CardActions> */}
                 </Card>
               </Box>
             </div>
@@ -99,7 +99,6 @@ export class SingleRestaurant extends React.Component {
         <div>
           <AddReview />
         </div>
-        <DataChart />
       </div>
     );
   }

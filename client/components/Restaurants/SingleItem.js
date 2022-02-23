@@ -22,21 +22,21 @@ class SingleItem extends Component {
       <div>
         <Box>
           <Card
-            className="mdc-card mdc-card--outlined restaurant"
+            className="mdc-card mdc-card--outlined singleFoodItem"
             variant="outlined"
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "grey" }}
           >
             <CardMedia>
               <CardMedia
                 style={{ paddingTop: "100%" }}
                 image={this.props.item.imageUrl}
                 title="Background image"
+                component="img"
               />
             </CardMedia>
             <CardContent>
               <Typography variant="h3" className="restaurant-text">
                 {this.props.item.label}
-                
               </Typography>
             </CardContent>
             <CardActions>
@@ -44,7 +44,6 @@ class SingleItem extends Component {
             </CardActions>
           </Card>
         </Box>
-        ;<h1>singleitem</h1>
       </div>
     );
   }

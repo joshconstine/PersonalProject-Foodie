@@ -7,6 +7,7 @@ import { me } from "./store";
 import AllRestaurants from "./components/Restaurants/AllRestaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
 import UsersReviews from "./components/Reviews/UsersReviews";
+import DataChart from "./components/Restaurants/DataChart";
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ class Routes extends Component {
               />
               <Route path="/restaurants" component={AllRestaurants} />
               <Route path="/reviews" component={UsersReviews} />
+              <Route path="/data/:restaurantId" component={DataChart} />
 
               <Redirect to="/home" />
             </Switch>
