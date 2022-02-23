@@ -7,6 +7,7 @@ import {
   VictoryScatter,
   VictoryTheme,
   VictoryTooltip,
+  VictoryAxis,
 } from "victory";
 import SingleItem from "./SingleItem";
 
@@ -69,30 +70,32 @@ class DataChart extends Component {
   render() {
     return (
       <div>
-        <VictoryChart
-          theme={VictoryTheme.material}
-          domain={{ x: [0, 1000], y: [0, 8] }}
-          domainPadding={30}
-        >
-          <VictoryScatter
-            style={{ data: { fill: "balck" } }}
-            size={7}
-            events={[
-              {
-                target: "data",
-                eventHandlers: {
-                  onClick: (event, data) => {
-                    this.setState({ selectedItem: data.datum });
-                    console.log(this.state);
+        <div className="dataChart">
+          <VictoryChart
+            theme={VictoryTheme.material}
+            domain={{ x: [0, 1000], y: [0, 8] }}
+            domainPadding={30}
+          >
+            <VictoryScatter
+              style={{ data: { fill: "balck" } }}
+              size={7}
+              events={[
+                {
+                  target: "data",
+                  eventHandlers: {
+                    onClick: (event, data) => {
+                      this.setState({ selectedItem: data.datum });
+                      console.log(this.state);
+                    },
                   },
                 },
-              },
-            ]}
-            data={data}
-            x="calories"
-            y="price"
-          />
-        </VictoryChart>
+              ]}
+              data={data}
+              x="calories"
+              y="price"
+            />
+          </VictoryChart>
+        </div>
         <div>
           <SingleItem item={this.state.selectedItem} />
         </div>
