@@ -86,11 +86,11 @@ export class SingleRestaurant extends React.Component {
                       </div>
                     </Typography>
                   </CardContent>
-                  <CardActions>
+                  {/* <CardActions>
                     <Button onClick={() => this.handleDelete(review.id)}>
                       Delete
                     </Button>
-                  </CardActions>
+                  </CardActions> */}
                 </Card>
               </Box>
             </div>

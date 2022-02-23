@@ -11,6 +11,7 @@ import {
   Button,
   CardMedia,
 } from "@material-ui/core";
+import { fetchDeleteReview } from "../../store/reviews";
 
 export class UsersReviews extends React.Component {
   constructor(props) {
@@ -23,6 +24,9 @@ export class UsersReviews extends React.Component {
     } catch (error) {
       console.error(error);
     }
+  }
+  async handleDelete(review) {
+    await this.props.onDelete(review);
   }
 
   render() {
@@ -74,7 +78,9 @@ export class UsersReviews extends React.Component {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button>Delete</Button>
+                    <Button onClick={() => this.handleDelete(review.id)}>
+                      Delete
+                    </Button>
                   </CardActions>
                 </Card>
               </Box>
@@ -98,6 +104,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getReviews: (id) => dispatch(fetchReviews(id)),
+    onDelete: (reviewId) => dispatch(fetchDeleteReview(reviewId)),
   };
 };
 
