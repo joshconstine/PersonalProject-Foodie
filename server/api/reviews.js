@@ -26,6 +26,16 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
+router.delete("/:reviewId", async (req, res, next) => {
+  try {
+    const review = await Review.findByPk(req.params.reviewId);
+    await review.destroy();
+    res.send(review);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/:restaurantId", async (req, res, next) => {
   try {
     console.log(req.params.restaurantId);

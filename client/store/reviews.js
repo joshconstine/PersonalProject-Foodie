@@ -4,6 +4,7 @@ const initialState = [];
 
 const CREATE_REVIEW = "CREATE_REVIEW";
 const SET_REVIEWS = "SET_REVIEWS";
+const DELETE_REVIEW = "DELETE_REVIEW";
 
 const setReviews = (reviews) => {
   return {
@@ -15,6 +16,12 @@ const setReviews = (reviews) => {
 const createReview = (review) => {
   return {
     type: CREATE_REVIEW,
+    review,
+  };
+};
+const deleteReview = (review) => {
+  return {
+    type: DELETE_REVIEW,
     review,
   };
 };
@@ -31,6 +38,12 @@ export const fetchCreateReview = (review, restaurantId) => {
     } catch (err) {
       console.log(err);
     }
+  };
+};
+export const fetchDeleteReview = (review) => {
+  return async (dispatch) => {
+    const { data: created } = await axios.delete(`/api/reviews/${review}`);
+    dispatch(deleteReview(created));
   };
 };
 
@@ -51,7 +64,8 @@ export default function reviewsReducer(reviews = initialState, action) {
       return [...reviews, action.review];
     case SET_REVIEWS:
       return action.reviews;
-
+    case DELETE_REVIEW:
+      return reviews.filter((review) => review.id !== action.review.id);
     default:
       return reviews;
   }

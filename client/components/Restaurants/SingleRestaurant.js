@@ -12,6 +12,7 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { fetchDeleteReview } from "../../store/reviews";
 
 // Notice that we're exporting the AllRobots component twice. The named export
 // (below) is not connected to Redux, while the default export (at the very
@@ -28,6 +29,12 @@ export class SingleRestaurant extends React.Component {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async handleDelete(review) {
+    await this.props.onDelete(review);
+    const restaurantId = this.props.match.params.restaurantId;
+    this.props.getRestaurant(restaurantId);
   }
 
   render() {
@@ -61,14 +68,7 @@ export class SingleRestaurant extends React.Component {
           </Box>
         </div>
         <h1>Reviews- </h1>
-        {/* {reviews.map((review) => {
-          return (
-            <div review={review} key={review.id}>
-              <h3>{review.name}</h3>
-              <p>{review.text}</p>
-            </div>
-          );
-        })} */}
+
         {reviews.map((review) => {
           return (
             <div review={review} key={review.id}>
@@ -87,7 +87,9 @@ export class SingleRestaurant extends React.Component {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button>Delete</Button>
+                    <Button onClick={() => this.handleDelete(review.id)}>
+                      Delete
+                    </Button>
                   </CardActions>
                 </Card>
               </Box>
@@ -111,6 +113,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getRestaurant: (id) => dispatch(fetchRestaurant(id)),
+    onDelete: (reviewId) => dispatch(fetchDeleteReview(reviewId)),
   };
 };
 
