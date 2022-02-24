@@ -8,19 +8,19 @@ const DropDownMenu = () => {
         My Account
         <span className="mui-caret"></span>
       </button>
-      <ul className="mui-dropdown__menu" id="ddm">
+      <ul className="mui-dropdown__menu  " id="ddm">
         <Link to="/reviews">
-          <li>
+          <li className="navItem">
             <span>Your reviews</span>
           </li>
         </Link>
         <Link to="/home">
-          <li>
+          <li className="navItem">
             <span>Home</span>
           </li>
         </Link>
         <Link to="/Map">
-          <li>
+          <li className="navItem">
             <span>Map</span>
           </li>
         </Link>

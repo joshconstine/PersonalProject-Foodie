@@ -70,7 +70,15 @@ class DataChart extends Component {
   render() {
     return (
       <div>
-        <div className="dataChart">
+        <div
+          className="dataChart"
+          style={{
+            boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+            "&:hover": {
+              boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
+            },
+          }}
+        >
           <VictoryChart
             theme={VictoryTheme.material}
             domain={{ x: [0, 1000], y: [0, 8] }}

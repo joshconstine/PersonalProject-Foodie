@@ -93,6 +93,7 @@ main {
 #ddm {
   background-color: Transparent;
   background-repeat: no-repeat;
+  color: black;
   border: none;
   cursor: pointer;
   overflow: hidden;
@@ -102,7 +103,6 @@ main {
 
   margin: 10px;
   width: 75%;
- 
 }
 .dataChart {
   background-color: white;

@@ -5,7 +5,6 @@ import { fetchRestaurant } from "../../store/singleRestaurant";
 import { Button } from "@material-ui/core";
 import { MDCTextField } from "@material/textfield";
 
-
 class AddReview extends Component {
   constructor() {
     super();
@@ -48,7 +47,7 @@ class AddReview extends Component {
             <span className="mdc-notched-outline__leading"></span>
             <span className="mdc-notched-outline__trailing"></span>
           </span>
-          <span className="mdc-text-field__resizer">
+          <span className="mdc-text-field__resizer ">
             <textarea
               onChange={handleChange}
               value={text}
