@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import L from "leaflet";
+import { Link } from "react-router-dom";
 
 class Map extends Component {
   constructor(props) {
@@ -11,6 +12,8 @@ class Map extends Component {
       attribution:
         '&amp;copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
+    var marker = L.marker([44.428949779326864, -88.05635287710363]).addTo(map);
+    marker.bindPopup("<b>McDoanlds</b>");
   }
 
   render() {

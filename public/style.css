@@ -99,8 +99,10 @@ main {
 }
 .review {
   justify-content: center;
+
   margin: 10px;
   width: 75%;
+ 
 }
 .dataChart {
   background-color: white;

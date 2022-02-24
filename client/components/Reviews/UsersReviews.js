@@ -34,7 +34,7 @@ export class UsersReviews extends React.Component {
     console.log(reviews);
 
     return (
-      <div>
+      <div className="restaurant-container">
         <Box>
           <Card
             className="mdc-card mdc-card--outlined restaurant"
@@ -58,16 +58,22 @@ export class UsersReviews extends React.Component {
             </CardActions>
           </Card>
         </Box>
-
-        <h2>your reviews - </h2>
+        <div className="review">
+          <h2>your reviews - </h2>
+        </div>
         {reviews.map((review) => {
           return (
-            <div review={review} key={review.id}>
+            <div review={review} key={review.id} className="review">
               <Box>
                 <Card
-                  className="mdc-card mdc-card--outlined review"
+                  className="mdc-card mdc-card--outlined"
                   variant="outlined"
-                  style={{ backgroundColor: "white" }}
+                  style={{
+                    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+                    "&:hover": {
+                      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)",
+                    },
+                  }}
                 >
                   <CardContent>
                     <Typography variant="h3" className="restaurant-text">
