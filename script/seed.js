@@ -87,12 +87,12 @@ async function seed() {
     }),
     Review.create({
       name: "Alyssia",
-      text: "this place is good but it makes me gassey",
+      text: "this place is stingey with the hot sauce",
       rating: 4,
     }),
     Review.create({
       name: "alyssia",
-      text: "This place screwed up my order, forgot my apple pie, WTF Sophia",
+      text: "This place screwed up my order, forgot my apple pie",
       rating: 3,
     }),
   ]);
