@@ -23,9 +23,10 @@ const RestaurantCard = (props) => {
         >
           <CardMedia>
             <CardMedia
-              style={{ paddingTop: "100%" }}
+              style={{ paddingTop: "5%" }}
               image={restaurant.imageUrl}
               title="Background image"
+              component="img"
             />
           </CardMedia>
           <CardContent>
