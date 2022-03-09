@@ -93,7 +93,6 @@ class DataChart extends Component {
                   eventHandlers: {
                     onClick: (event, data) => {
                       this.setState({ selectedItem: data.datum });
-                      console.log(this.state);
                     },
                   },
                 },

@@ -15,7 +15,7 @@ export const fetchRestaurant = (id) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/restaurants/${id}`);
-      dispatch(setRestaurant(data));
+      await dispatch(setRestaurant(data));
     } catch (err) {
       console.log(err);
     }

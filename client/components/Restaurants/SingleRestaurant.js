@@ -1,67 +1,36 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import {  useSelector, useDispatch } from "react-redux";
 import { fetchRestaurant } from "../../store/singleRestaurant";
 import AddReview from "./AddReview";
 
-import { fetchDeleteReview } from "../../store/reviews";
 import ReviewCard from "../Reviews/ReviewCard";
 import RestaurantCard from "./RestaurantCard";
-// Notice that we're exporting the AllRobots component twice. The named export
-// (below) is not connected to Redux, while the default export (at the very
-// bottom) is connected to Redux. Our tests should cover _both_ cases.
-export class SingleRestaurant extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
-  componentDidMount() {
-    try {
-      const restaurantId = this.props.match.params.restaurantId;
-      this.props.getRestaurant(restaurantId);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+export const SingleRestaurant = (props) => {
+  const selectedRestaurant = useSelector((state) => state.selectedRestaurant);
+  const reviews = useSelector((state) => state.selectedRestaurant.Reviews);
 
-  async handleDelete(review) {
-    await this.props.onDelete(review);
-    const restaurantId = this.props.match.params.restaurantId;
-    this.props.getRestaurant(restaurantId);
-  }
+  const restaurantId = props.match.params.restaurantId;
+  const dispatch = useDispatch();
 
-  render() {
-    const restaurant = this.props.selectedRestaurant || {};
-    const reviews = restaurant.Reviews || [];
-    console.log(restaurant);
+  useEffect(() => {
+    dispatch(fetchRestaurant(restaurantId));
+  }, []);
+  
+  const allReviews = reviews || [];
+  return (
+    <div>
+      <div className="restaurant-container">
+        <RestaurantCard restaurant={selectedRestaurant} />
 
-    return (
-      <div>
-        <div className="restaurant-container">
-          <RestaurantCard restaurant={restaurant} />
-
-          {reviews.map((review) => {
-            return <ReviewCard review={review} key={review.id} />;
-          })}
-          <div>
-            <AddReview restaurant={this.props.selectedRestaurant} />
-          </div>
+        {allReviews.map((review) => {
+          return <ReviewCard review={review} key={review.id} />;
+        })}
+        <div>
+          <AddReview restaurant={selectedRestaurant} />
         </div>
       </div>
-    );
-  }
-}
-
-const mapState = (state) => {
-  return {
-    selectedRestaurant: state.selectedRestaurant,
-  };
+    </div>
+  );
 };
-
-const mapDispatch = (dispatch) => {
-  return {
-    getRestaurant: (id) => dispatch(fetchRestaurant(id)),
-    onDelete: (reviewId) => dispatch(fetchDeleteReview(reviewId)),
-  };
-};
-
-export default connect(mapState, mapDispatch)(SingleRestaurant);
+export default SingleRestaurant;

@@ -1,51 +1,29 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchRestaurants } from "../../store/restaurants";
 import RestaurantCard from "./RestaurantCard";
 
-export class AllRestautants extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+export const AllProducts = () => {
+  const restaurants = useSelector((state) => state.restaurants);
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    try {
-      this.props.getRestaurants();
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // Executes when component first loads
+  useEffect(() => {
+    dispatch(fetchRestaurants());
+  }, []);
 
-  render() {
-    const restaurants = this.props.restaurants || [];
-
-    return (
-      <div>
-        <div id="headder">
-          <h1>Restaurants near you...</h1>
-        </div>
-        <div className="restaurant-container">
-          {restaurants.map((restaurant) => {
-            return (
-              <RestaurantCard restaurant={restaurant} key={restaurant.id} />
-            );
-          })}
-        </div>
+  return (
+    <div>
+      <div id="headder">
+        <h1>Restaurants near you...</h1>
       </div>
-    );
-  }
-}
-const mapState = (state) => {
-  return {
-    restaurants: state.restaurants,
-    selectedRestaurant: state.selectedRestaurant,
-  };
+      <div className="restaurant-container">
+        {restaurants.map((restaurant) => {
+          return <RestaurantCard restaurant={restaurant} key={restaurant.id} />;
+        })}
+      </div>
+    </div>
+  );
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    getRestaurants: () => dispatch(fetchRestaurants()),
-  };
-};
-
-export default connect(mapState, mapDispatch)(AllRestautants);
+export default AllProducts;

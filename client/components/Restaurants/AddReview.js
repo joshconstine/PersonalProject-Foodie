@@ -1,4 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
+import React, {  useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateReview } from "../../store/reviews";
 import { connect } from "react-redux";
 import { fetchRestaurant } from "../../store/singleRestaurant";
@@ -7,7 +8,7 @@ import { Button } from "@material-ui/core";
 const AddReview = (props) => {
   const [text, setText] = useState("");
   const { restaurant, createReview } = props;
-  console.log(props);
+
   function handleChange(evt) {
     setText(evt.target.value);
   }

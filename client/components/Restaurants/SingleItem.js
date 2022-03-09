@@ -12,9 +12,6 @@ import {
 class SingleItem extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    console.log("ing single item " + this.props.item);
-    console.log(this.props.item);
   }
   state = {};
   render() {

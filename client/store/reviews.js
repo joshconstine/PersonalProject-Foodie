@@ -33,7 +33,6 @@ export const fetchCreateReview = (review, restaurantId) => {
         `/api/reviews/${restaurantId}`,
         review
       );
-
       dispatch(createReview(created));
     } catch (err) {
       console.log(err);
