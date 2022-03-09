@@ -1,24 +1,25 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCreateReview } from "../../store/reviews";
-import { connect } from "react-redux";
 import { fetchRestaurant } from "../../store/singleRestaurant";
 import { Button } from "@material-ui/core";
 
 const AddReview = (props) => {
+  const username = useSelector((state) => state.auth.username);
+  const dispatch = useDispatch();
+
   const [text, setText] = useState("");
-  const { restaurant, createReview } = props;
 
   function handleChange(evt) {
     setText(evt.target.value);
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    const name = props.username;
+    const name = username;
     const restaurantId = props.restaurant.id;
-    createReview({ text, name }, restaurantId);
-    props.getRestaurant(restaurantId);
+    await dispatch(fetchCreateReview({ text, name }, restaurantId));
+    dispatch(fetchRestaurant(restaurantId));
 
     setText("");
   }
@@ -49,15 +50,5 @@ const AddReview = (props) => {
   );
 };
 
-const mapState = (state) => {
-  return {
-    username: state.auth.username,
-  };
-};
-const mapDispatchToProps = (dispatch, { history }) => ({
-  createReview: (review, restaurantId) =>
-    dispatch(fetchCreateReview(review, restaurantId)),
-  getRestaurant: (id) => dispatch(fetchRestaurant(id)),
-});
 
-export default connect(mapState, mapDispatchToProps)(AddReview);
+export default AddReview;
