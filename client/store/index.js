@@ -6,17 +6,30 @@ import auth from "./auth";
 import restaurantsReducer from "./restaurants";
 import restaurantReducer from "./singleRestaurant";
 import reviewsReducer from "./reviews";
+import { configureStore } from "@reduxjs/toolkit";
 
-const reducer = combineReducers({
-  auth,
-  restaurants: restaurantsReducer,
-  selectedRestaurant: restaurantReducer,
-  reviews: reviewsReducer,
+// const reducer = combineReducers({
+//   auth,
+//   restaurants: restaurantsReducer,
+//   selectedRestaurant: restaurantReducer,
+//   reviews: reviewsReducer,
+// });
+
+// const middleware = composeWithDevTools(
+//   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+// );
+const middlewares = [ thunkMiddleware];
+
+// const store = createStore(reducer, middleware);
+const store = configureStore({
+  reducer: {
+    auth,
+    restaurants: restaurantsReducer,
+    selectedRestaurant: restaurantReducer,
+    reviews: reviewsReducer,
+  },
+  middlewares,
 });
-const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
-);
-const store = createStore(reducer, middleware);
 
 export default store;
 export * from "./auth";
