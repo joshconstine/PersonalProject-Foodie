@@ -26,7 +26,7 @@ class Routes extends Component {
         <main>
           {isLoggedIn ? (
             <Switch>
-              <Route path="/home" component={AllRestaurants} />
+              <Route path="/home" component={Home} />
               <Route
                 exact
                 path="/restaurants/:restaurantId"
