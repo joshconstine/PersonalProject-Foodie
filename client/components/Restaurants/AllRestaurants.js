@@ -7,7 +7,6 @@ export const AllProducts = () => {
   const restaurants = useSelector((state) => state.restaurants);
   const dispatch = useDispatch();
 
-  // Executes when component first loads
   useEffect(() => {
     dispatch(fetchRestaurants());
   }, []);
