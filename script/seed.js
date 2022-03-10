@@ -4,6 +4,7 @@ const { db, Restaurant, Review, User } = require("../server/db");
 const createUser = require("./userCreator");
 const createReviews = require("./reviewCreator");
 const createRestaurant = require("./restaurantCreator");
+const scrapeRestaurant = require("./scrapers");
 
 const userAmount = 20;
 
@@ -60,6 +61,7 @@ async function seed() {
   console.log(`restaurants seeded successfully`);
   await testUserSeed();
   await userSeed();
+  await restaurantSeed();
 
   console.log(`seeded ${userAmount} users`);
   console.log(`users seeded successfully`);
@@ -82,6 +84,15 @@ async function runSeed() {
 if (module === require.main) {
   runSeed();
 }
+
+const restaurantSeed = async () => {
+  const fetchedRestaurants = await scrapeRestaurant("green+bay", "wi");
+  await Promise.all(
+    fetchedRestaurants.map((restaurant) => {
+      return Restaurant.create(restaurant);
+    })
+  );
+};
 
 const userSeed = async () => {
   const reviewsPerPerson = 3;
