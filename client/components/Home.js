@@ -6,7 +6,7 @@ import OptionsBar from "./OptionsBar";
  * COMPONENT
  */
 export const Home = () => {
-  const username = useSelector((state) => state.auth.username);
+  const username = useSelector((state) => state.auth.firstName);
 
   return (
     <div>
