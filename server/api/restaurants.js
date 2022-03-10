@@ -5,7 +5,17 @@ const Reviews = require("../db/models/Review");
 router.get("/", async (req, res, next) => {
   try {
     const allRestaurants = await Restaurant.findAll();
+
     res.json(allRestaurants);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/:cityName/:stateName", async (req, res, next) => {
+  try {
+    console.log(req.params.cityName, req.params.stateName);
+    res.json("hello world");
   } catch (error) {
     next(error);
   }

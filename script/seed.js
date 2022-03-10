@@ -85,8 +85,9 @@ if (module === require.main) {
   runSeed();
 }
 
-const restaurantSeed = async () => {
-  const fetchedRestaurants = await scrapeRestaurant("green+bay", "wi");
+const restaurantSeed = async (city, state) => {
+  // const fetchedRestaurants = await scrapeRestaurant("green+bay", "wi");
+  const fetchedRestaurants = await scrapeRestaurant(city, state);
   await Promise.all(
     fetchedRestaurants.map((restaurant) => {
       return Restaurant.create(restaurant);
@@ -184,4 +185,4 @@ const testUserSeed = async () => {
   await aly.addReview(alyReview2);
 };
 
-module.exports = seed;
+module.exports = { seed, restaurantSeed };

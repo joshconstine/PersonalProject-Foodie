@@ -43,6 +43,17 @@ export const fetchRestaurants = () => {
   };
 };
 
+export const fetchCityRestaurants = (city, state) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`/api/restaurants/${city}/${state}`);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const fetchCreateRestaurant = (restaurant, history) => {
   return async (dispatch) => {
     try {
