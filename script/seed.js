@@ -2,6 +2,7 @@
 
 const { db, Restaurant, Review, User } = require("../server/db");
 const createUser = require("./userCreator");
+const createReviews = require("./reviewCreator");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -9,12 +10,6 @@ const createUser = require("./userCreator");
  */
 
 const userAmount = 20;
-
-const userSeed = async () => {
-  for (let i = 0; i < userAmount; i++) {
-    await User.create(createUser());
-  }
-};
 
 var restaurants = [
   {
@@ -62,13 +57,9 @@ var restaurants = [
   },
 ];
 
-
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
-
-  await userSeed();
-
 
   await Promise.all(
     restaurants.map((restaurant) => {
@@ -101,7 +92,7 @@ async function seed() {
     }),
   ]);
 
-  const mcDonalds = await Restaurant.findOne({
+  var mcDonalds = await Restaurant.findOne({
     where: {
       name: "Mac Shack",
     },
@@ -135,6 +126,7 @@ async function seed() {
     },
   });
 
+  await userSeed();
   await mcDonalds.addReview(codiesReview);
   await mcDonalds.addReview(alyReview2);
   await tbell.addReview(alyReview);
@@ -152,10 +144,10 @@ async function seed() {
 }
 
 /*
- We've separated the `seed` function from the `runSeed` function.
- This way we can isolate the error handling and exit trapping.
- The `seed` function is concerned only with modifying the database.
-*/
+  We've separated the `seed` function from the `runSeed` function.
+  This way we can isolate the error handling and exit trapping.
+  The `seed` function is concerned only with modifying the database.
+  */
 async function runSeed() {
   console.log("seeding...");
   try {
@@ -174,10 +166,39 @@ async function runSeed() {
   Execute the `seed` function, IF we ran this module directly (`node seed`).
   `Async` functions always return a promise, so we can use `catch` to handle
   any errors that might occur inside of `seed`.
-*/
+  */
 if (module === require.main) {
   runSeed();
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
+const userSeed = async () => {
+  const reviewsPerPerson = 3;
+
+  for (let i = 0; i < userAmount; i++) {
+    const user = await User.create(createUser());
+    const reviews = await createReviews(reviewsPerPerson, user.firstName);
+    reviews.map((review) => {
+      return Review.create(review);
+    });
+
+    var mcDonalds = await Restaurant.findOne({
+      where: {
+        name: "Mac Shack",
+      },
+    });
+    const allReviews = await Review.findAll();
+    // console.log(allReviews);
+
+    for (let j = 1; j < reviewsPerPerson; j++) {
+      let currentReview = await Review.findOne({
+        where: {
+          id: i * 3 + j,
+        },
+      });
+
+      await mcDonalds.addReview(currentReview);
+    }
+  }
+};
 module.exports = seed;
