@@ -1,60 +1,74 @@
 "use strict";
 
 const { db, Restaurant, Review, User } = require("../server/db");
+const createUser = require("./userCreator");
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
  */
+
+const userAmount = 20;
+
+const userSeed = async () => {
+  for (let i = 0; i < userAmount; i++) {
+    await User.create(createUser());
+  }
+};
+
+var restaurants = [
+  {
+    id: 1,
+    name: "Mac Shack",
+
+    imageUrl:
+      "https://retailerreportcard.com/wp-content/uploads/2018/09/logo-large-mcdonalds.png",
+    foodType: "american",
+  },
+  {
+    id: 2,
+    name: "T Bell",
+    imageUrl:
+      "https://locations.tacobell.com/permanent-b0b701/assets/images/TBUS_Logo.7bd20747.svg",
+    foodType: "mexican",
+  },
+  {
+    id: 3,
+    name: "Culvers",
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVZLGfH7vXYyXrKJCB6Vd9JUpjBHhJawsbDg&usqp=CAU",
+    foodType: "american",
+  },
+  {
+    id: 4,
+    name: "In-N-OUT",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/InNOut_2021_logo.svg/1200px-InNOut_2021_logo.svg.png",
+    foodType: "american",
+  },
+  {
+    id: 5,
+    name: "Chick-Fil-A",
+    imageUrl:
+      "http://www.chick-fil-a.com/-/media/images/cfacom/default-images/chick-fil-a-logo-vector.ashx",
+    foodType: "american",
+  },
+  {
+    id: 6,
+    name: "Arbys",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Arby%27s_logo.svg/1200px-Arby%27s_logo.svg.png",
+    foodType: "american",
+  },
+];
+
+
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  var restaurants = [
-    {
-      id: 1,
-      name: "Mac Shack",
+  await userSeed();
 
-      imageUrl:
-        "https://retailerreportcard.com/wp-content/uploads/2018/09/logo-large-mcdonalds.png",
-      foodType: "american",
-    },
-    {
-      id: 2,
-      name: "T Bell",
-      imageUrl:
-        "https://locations.tacobell.com/permanent-b0b701/assets/images/TBUS_Logo.7bd20747.svg",
-      foodType: "mexican",
-    },
-    {
-      id: 3,
-      name: "Culvers",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVZLGfH7vXYyXrKJCB6Vd9JUpjBHhJawsbDg&usqp=CAU",
-      foodType: "american",
-    },
-    {
-      id: 4,
-      name: "In-N-OUT",
-      imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/InNOut_2021_logo.svg/1200px-InNOut_2021_logo.svg.png",
-      foodType: "american",
-    },
-    {
-      id: 5,
-      name: "Chick-Fil-A",
-      imageUrl:
-        "http://www.chick-fil-a.com/-/media/images/cfacom/default-images/chick-fil-a-logo-vector.ashx",
-      foodType: "american",
-    },
-    {
-      id: 6,
-      name: "Arbys",
-      imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Arby%27s_logo.svg/1200px-Arby%27s_logo.svg.png",
-      foodType: "american",
-    },
-  ];
 
   await Promise.all(
     restaurants.map((restaurant) => {

@@ -31,19 +31,6 @@ const User = db.define("user", {
   },
 });
 
-// const User = db.define("user", {
-//   username: {
-//     type: Sequelize.STRING,
-//     unique: true,
-//     allowNull: false,
-//   },
-//   password: {
-//     type: Sequelize.STRING,
-//   },
-//   photo: {
-//     type: Sequelize.STRING,
-//   },
-// });
 
 module.exports = User;
 
